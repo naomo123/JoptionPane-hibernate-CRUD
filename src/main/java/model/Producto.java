@@ -1,4 +1,6 @@
-package models;
+package model;
+
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -81,6 +83,9 @@ public class Producto {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+
+	
+
 
 	@Override
 	public String toString() {

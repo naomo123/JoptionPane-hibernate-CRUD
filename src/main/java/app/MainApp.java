@@ -5,9 +5,9 @@ import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import javax.swing.JOptionPane;
+import model.Producto;
 
-import models.Producto;
+import javax.swing.JOptionPane;
 
 public class MainApp {
 
@@ -38,7 +38,7 @@ public class MainApp {
 
 				String inputValueName = JOptionPane.showInputDialog("Digite el nombre del producto");
 
-				while (inputValueName.isEmpty()) {
+				while (inputValueName.isEmpty() ) {
 					inputValueName = JOptionPane.showInputDialog("Tiene que digitar el nombre del producto");
 				}
 				String inputValueMarca = JOptionPane.showInputDialog("Digite la marca del producto:");
@@ -79,8 +79,12 @@ public class MainApp {
 				listaProductos = query.getResultList();
 
 				String inputIdb = JOptionPane.showInputDialog("Digita el id del producto");
-
+				while (inputIdb.isEmpty()) {
+					inputIdb = JOptionPane
+							.showInputDialog("Tiene que digitar el id del producto que deseas buscar");
+				}
 				producto = new Producto();
+			
 				producto = entity.find(Producto.class, Integer.parseInt(inputIdb));
 
 				if (producto != null) {
@@ -94,14 +98,24 @@ public class MainApp {
 
 				break;
 			case 2:
-				String inputIda = JOptionPane.showInputDialog("Digita el id del producto que deseas actualizar");
+				
+				ArrayList<Producto> listaProductosa = new ArrayList<>();
+				Query query3 = entity.createQuery("SELECT p FROM Producto p");
+				listaProductosa = (ArrayList<Producto>) query3.getResultList();
+
+				
+				
+			    
+			    String inputIda = JOptionPane.showInputDialog(listaProductosa+"\n Digita el id del producto que deseas actualizar");
 				while (inputIda.isEmpty()) {
 					inputIda = JOptionPane
 							.showInputDialog("Tiene que digitar el id del producto que deseas actualizar");
 				}
+				
 				producto = new Producto();
 				producto = entity.find(Producto.class, Integer.parseInt(inputIda));
-
+				
+				 
 				if (producto != null) {
 
 					String inputEditName = JOptionPane.showInputDialog(null,
@@ -151,8 +165,11 @@ public class MainApp {
 				}
 				break;
 			case 3:
-				String inputIde = JOptionPane.showInputDialog("Digita el id del producto que deseas actualizar");
-
+				String inputIde = JOptionPane.showInputDialog("Digita el id del producto que deseas eliminar");
+				while (inputIde.isEmpty()) {
+					inputIde = JOptionPane
+							.showInputDialog("Tiene que digitar el id del producto que deseas eliminar");
+				}
 				producto = new Producto();
 				producto = entity.find(Producto.class, Integer.parseInt(inputIde));
 
@@ -174,8 +191,8 @@ public class MainApp {
 				List<Producto> listaProductosv = new ArrayList<>();
 				Query query2 = entity.createQuery("SELECT p FROM Producto p");
 				listaProductosv = query2.getResultList();
-
-				JOptionPane.showMessageDialog(null, "\n" + listaProductosv);
+				
+				JOptionPane.showMessageDialog(null, listaProductosv);
 				break;
 
 			case 5:
@@ -185,7 +202,7 @@ public class MainApp {
 				break;
 
 			default:
-				System.out.println("Opción no válida\n");
+				System.out.println("Opción no válida debe utilizar el boton salir del menu\n");
 				break;
 			}
 		}
