@@ -27,7 +27,7 @@ public class MainApp {
 			String[] botones = { "1. Crear Producto", "2. Buscar Producto", "3. Actualizar Producto",
 					"4. Eliminar Producto", "6. Ver lista de productos", "5. Salir" };
 			String[] salidaE = { "Si" };
-			opcion = JOptionPane.showOptionDialog(null, "Elija una opción:", "Inicio", JOptionPane.DEFAULT_OPTION,
+			opcion = JOptionPane.showOptionDialog(null, "Elija una opciï¿½n:", "Inicio", JOptionPane.DEFAULT_OPTION,
 					JOptionPane.QUESTION_MESSAGE, null, botones, null);
 
 			switch (opcion) {
@@ -41,22 +41,22 @@ public class MainApp {
 				while (inputValueName.isEmpty() ) {
 					inputValueName = JOptionPane.showInputDialog("Tiene que digitar el nombre del producto");
 				}
+				producto.setNombre(inputValueName);
 				String inputValueMarca = JOptionPane.showInputDialog("Digite la marca del producto:");
 				while (inputValueMarca.isEmpty()) {
 					inputValueMarca = JOptionPane.showInputDialog("Tiene que digitar la marca del producto:");
 				}
-				producto.setNombre(inputValueName);
+				producto.setMarca(inputValueMarca);
 				String inputValueDescrip = JOptionPane.showInputDialog("Digite la descripcion del producto:");
 				while (inputValueDescrip.isEmpty()) {
 					inputValueDescrip = JOptionPane.showInputDialog("Tiene que digitar la descripcion del producto:");
 				}
-				producto.setMarca(inputValueMarca);
+				producto.setDescripcion(inputValueDescrip);
 				String inputValueStock = JOptionPane.showInputDialog("Digite las existencias del producto:");
 				while (inputValueStock.isEmpty()) {
 					inputValueStock = JOptionPane.showInputDialog("Tiene que digitar las existencias del producto:");
-					producto.setStock(Integer.parseInt(inputValueStock));
 				}
-				producto.setDescripcion(inputValueDescrip);
+				producto.setStock(Integer.parseInt(inputValueStock));
 				String inputValuePrecio = JOptionPane.showInputDialog("Digite el precio del producto:");
 				while (inputValuePrecio.isEmpty()) {
 					inputValuePrecio = JOptionPane.showInputDialog("Tiene que digitar el precio valido del producto:");
@@ -192,7 +192,7 @@ public class MainApp {
 				Query query2 = entity.createQuery("SELECT p FROM Producto p");
 				listaProductosv = query2.getResultList();
 				
-				JOptionPane.showMessageDialog(null, listaProductosv);
+				JOptionPane.showMessageDialog(null, listaProductosv.toString());
 				break;
 
 			case 5:
@@ -202,7 +202,7 @@ public class MainApp {
 				break;
 
 			default:
-				System.out.println("Opción no válida debe utilizar el boton salir del menu\n");
+				System.out.println("Opciï¿½n no vï¿½lida debe utilizar el boton salir del menu\n");
 				break;
 			}
 		}
